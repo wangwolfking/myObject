@@ -16,11 +16,39 @@ import test.md5.MD5;
 public class Test_one {
 
 	public static void main(String[] args) throws Exception {
+		// try {
+		//// readZipFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981.zip");
+		// test1("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981.zip");
+		// } catch (Exception e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+//		test();
+		String str= "er=er";
+		System.out.println(str.indexOf("_"));
+		//moveFile();
+	}
+
+	public static void test() {
 		try {
-//			readZipFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981.zip");
-			 test1("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981.zip");
+			if (1 == 1) {
+				throw new Exception("上传失败，压缩文件不完整或已损坏，请重新上传");
+			}
+			System.out.println(123);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void moveFile() {
+		try {
+			File afile = new File("d:\\zip1\\fe10b0d9da88fe6e82445b9ccb17ef97_2015100511411.zip");
+			if (afile.renameTo(new File("d:\\zip2" +File.separator+ afile.getName()))) {
+				System.out.println("File is moved successful!");
+			} else {
+				System.out.println("File is failed to move!");
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -58,8 +86,8 @@ public class Test_one {
 			zipIn.closeEntry();
 			if (!zipEntry.isDirectory()) {
 				String name = zipEntry.getName();
-//				File f = new File(name);
-//				System.out.printf(MD5.getFileMD5String(f));
+				// File f = new File(name);
+				// System.out.printf(MD5.getFileMD5String(f));
 				long size = zipEntry.getSize();
 				long compd = zipEntry.getCompressedSize();
 				System.out.printf("%s , size=%d, compressed size=%d\r\n", name, size, compd);
