@@ -24,9 +24,9 @@ public class Test_one {
 		// e.printStackTrace();
 		// }
 //		test();
-		String str= "er=er";
-		System.out.println(str.indexOf("_"));
-		//moveFile();
+//		String str= "er=er";
+//		System.out.println(str.indexOf("_"));
+		moveFile();
 	}
 
 	public static void test() {
@@ -42,8 +42,9 @@ public class Test_one {
 
 	public static void moveFile() {
 		try {
-			File afile = new File("d:\\zip1\\fe10b0d9da88fe6e82445b9ccb17ef97_2015100511411.zip");
-			if (afile.renameTo(new File("d:\\zip2" +File.separator+ afile.getName()))) {
+			File afile = new File("d:\\zip2\\fe10b0d9da88fe6e82445b9ccb17ef97_2015100511411.zip");
+			System.out.println(afile.getAbsolutePath());
+			if (afile.renameTo(new File("d:\\zip1" +File.separator+ afile.getName()))) {
 				System.out.println("File is moved successful!");
 			} else {
 				System.out.println("File is failed to move!");
@@ -96,3 +97,33 @@ public class Test_one {
 		zipIn.close();
 	}
 }
+//
+//通过ZipInStream类将压缩文件解压到指定的文件夹中：
+//源程序是：
+//import java.io.*;
+//import java.util.zip.*;
+//public class Decompressing 搜索{ // 创建文件
+//public static void main(String[] temp) {
+//ZipInputStream zin; // 创建ZipInputStream对象
+//try { // try语句捕获可能发生的异常
+//zin = new ZipInputStream(new FileInputStream("F:/hello.zip"));
+//// 实例化对象，指明要进行解压的文件
+//ZipEntry entry = zin.getNextEntry(); // 获取下一个ZipEntry
+//while (((entry = zin.getNextEntry()) != null)
+//&& !entry.isDirectory()) {
+//// 如果entry不为空，并不在同一目录下
+//File file = new File("F:\" + entry.getName()); // 获取文件目录
+//System.out.println(file);
+//if (!file.exists()) { // 如果该文件不存在
+//file.mkdirs();// 创建文件所在文件夹
+//file.createNewFile(); // 创建文件
+//}
+//zin.closeEntry(); // 关闭当前entry
+//System.out.println(entry.getName() + "解压成功");
+//}
+//zin.close(); // 关闭流
+//} catch (Exception e) {
+//e.printStackTrace();
+//}
+//}
+//}
