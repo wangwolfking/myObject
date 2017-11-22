@@ -1,7 +1,7 @@
 /**
  * Copyright 1996-2006 The Yocaly BeiJing Software Tech Ltd.
  */
-package com.yocaly.rhcs.common.util;
+package util;
 
 import java.util.Iterator;
 import java.util.LinkedHashSet;

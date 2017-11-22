@@ -1,4 +1,4 @@
-package com.yocaly.rhcs.common.exception;
+package util.exception;
 
 public class CheckException extends RuntimeException {
 

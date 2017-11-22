@@ -6,9 +6,9 @@ import java.util.StringTokenizer;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
-import com.yocaly.rhcs.common.constants.BossCommonConstants;
-import com.yocaly.rhcs.common.exception.CheckException;
-import com.yocaly.rhcs.common.util.StringUtil;
+import util.constants.BossCommonConstants;
+import util.exception.CheckException;
+import util.StringUtil;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

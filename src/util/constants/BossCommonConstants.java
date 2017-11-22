@@ -1,4 +1,4 @@
-package com.yocaly.rhcs.common.constants;
+package util.constants;
 
 public final class BossCommonConstants {
 	/**
