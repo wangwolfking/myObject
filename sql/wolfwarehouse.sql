@@ -16,24 +16,79 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`wolfwarehouse` /*!40100 DEFAULT CHARACT
 
 USE `wolfwarehouse`;
 
-/*Table structure for table `manufacturer` */
+/*Table structure for table `into_stor_order` */
 
-DROP TABLE IF EXISTS `manufacturer`;
+DROP TABLE IF EXISTS `into_stor_order`;
 
-CREATE TABLE `manufacturer` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '厂商id',
-  `manu_name` varchar(100) NOT NULL COMMENT '厂商名字',
-  `address` varchar(200) DEFAULT NULL COMMENT '厂商地址',
-    `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
-  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
-  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N'
- COMMENT '是否删除',
+CREATE TABLE `into_stor_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '入库单id',
+  `prod_id` int(11) NOT NULL COMMENT '商品id',
+  `stor_id` int(11) NOT NULL COMMENT '仓库id',
+  `status` varchar(20) DEFAULT NULL COMMENT '入库单状态',
+  `into_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '入库时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `manufacturer` */
+/*Data for the table `into_stor_order` */
+
+/*Table structure for table `inventory` */
+
+DROP TABLE IF EXISTS `inventory`;
+
+CREATE TABLE `inventory` (
+  `prod_id` int(11) DEFAULT NULL COMMENT '商品id',
+  `stor_id` int(11) DEFAULT NULL COMMENT '仓库id',
+  `prod_number` int(11) DEFAULT NULL COMMENT '库存数量',
+  `is_check` varchar(4) DEFAULT NULL COMMENT '是否清点',
+  `check_date` datetime DEFAULT NULL COMMENT '最后清点日期',
+  `check_by` int(11) DEFAULT NULL COMMENT '最后清点人id',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
+  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `inventory` */
+
+/*Table structure for table `organization` */
+
+DROP TABLE IF EXISTS `organization`;
+
+CREATE TABLE `organization` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '厂商id',
+  `org_name` varchar(100) NOT NULL COMMENT '厂商名字',
+  `address` varchar(200) DEFAULT NULL COMMENT '厂商地址',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
+  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `organization` */
+
+/*Table structure for table `out_stor_order` */
+
+DROP TABLE IF EXISTS `out_stor_order`;
+
+CREATE TABLE `out_stor_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '出库单id',
+  `prod_id` int(11) NOT NULL COMMENT '商品id',
+  `stor_id` int(11) NOT NULL COMMENT '仓库id',
+  `status` varchar(4) DEFAULT NULL COMMENT '出库单状态',
+  `out_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '出库时间',
+  `prod_number` int(11) DEFAULT NULL COMMENT '数量',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
+  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `out_stor_order` */
 
 /*Table structure for table `products` */
 
@@ -43,17 +98,16 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品id',
   `pro_name` varchar(100) NOT NULL COMMENT '商品名称',
   `code` varchar(100) DEFAULT NULL COMMENT '商品编码',
-  `manufacture_date` datetime DEFAULT NULL COMMENT '生产日期',
-  `manufacturer_id` int(11) DEFAULT NULL COMMENT '厂商id',
-  `wholesale_price` double DEFAULT NULL COMMENT '批发价格',
-  `retail_price` double DEFAULT NULL COMMENT '零售价格',
+  `manu_date` datetime DEFAULT NULL COMMENT '生产日期(manufacture_date)',
+  `org_id` int(11) DEFAULT NULL COMMENT '厂商id',
+  `whol_price` double DEFAULT NULL COMMENT '批发价格(wholesale_price)',
+  `reta_price` double DEFAULT NULL COMMENT '零售价格(retail_price)',
   `color` int(11) DEFAULT NULL COMMENT '商品颜色',
-    `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
   `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
   `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N'
- COMMENT '是否删除',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -68,12 +122,11 @@ CREATE TABLE `storage` (
   `ware_name` varchar(100) NOT NULL COMMENT '仓库名称',
   `company_id` int(11) NOT NULL COMMENT '所属单位id',
   `address` varchar(100) DEFAULT NULL COMMENT '仓库地址',
-    `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
+  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
   `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
   `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N'
- COMMENT '是否删除',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -96,8 +149,7 @@ CREATE TABLE `users` (
   `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
   `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N'
- COMMENT '是否删除',
+  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
   `dep_id` int(11) DEFAULT NULL COMMENT '部门id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
