@@ -2,7 +2,7 @@
 SQLyog Ultimate v11.24 (32 bit)
 MySQL - 5.7.17-log : Database - wolfwarehouse
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -16,6 +16,21 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`wolfwarehouse` /*!40100 DEFAULT CHARACT
 
 USE `wolfwarehouse`;
 
+/*Table structure for table `department` */
+
+DROP TABLE IF EXISTS `department`;
+
+CREATE TABLE `department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
+  `name` varchar(200) NOT NULL COMMENT '部门id',
+  `org_id` int(11) NOT NULL COMMENT '单位id',
+  PRIMARY KEY (`id`),
+  KEY `fk_dep_org` (`org_id`),
+  CONSTRAINT `fk_dep_org` FOREIGN KEY (`org_id`) REFERENCES `organization` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `department` */
+
 /*Table structure for table `into_stor_order` */
 
 DROP TABLE IF EXISTS `into_stor_order`;
@@ -26,7 +41,11 @@ CREATE TABLE `into_stor_order` (
   `stor_id` int(11) NOT NULL COMMENT '仓库id',
   `status` varchar(20) DEFAULT NULL COMMENT '入库单状态',
   `into_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '入库时间',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_in_stor_prod` (`prod_id`),
+  KEY `fk_in_stor_stor` (`stor_id`),
+  CONSTRAINT `fk_in_stor_prod` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `fk_in_stor_stor` FOREIGN KEY (`stor_id`) REFERENCES `storage` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `into_stor_order` */
@@ -42,11 +61,10 @@ CREATE TABLE `inventory` (
   `is_check` varchar(4) DEFAULT NULL COMMENT '是否清点',
   `check_date` datetime DEFAULT NULL COMMENT '最后清点日期',
   `check_by` int(11) DEFAULT NULL COMMENT '最后清点人id',
-  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
-  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
-  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
+  KEY `fk_inve_prod` (`prod_id`),
+  KEY `fk_inve_stor` (`stor_id`),
+  CONSTRAINT `fk_inve_prod` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `fk_inve_stor` FOREIGN KEY (`stor_id`) REFERENCES `storage` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `inventory` */
@@ -80,12 +98,11 @@ CREATE TABLE `out_stor_order` (
   `status` varchar(4) DEFAULT NULL COMMENT '出库单状态',
   `out_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '出库时间',
   `prod_number` int(11) DEFAULT NULL COMMENT '数量',
-  `create_by` int(11) DEFAULT NULL COMMENT '创建人id',
-  `create_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_by` int(11) DEFAULT NULL COMMENT '最后更新人id',
-  `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
-  `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `fk_out_stor_prod` (`prod_id`),
+  KEY `fk_out_stor_stor` (`stor_id`),
+  CONSTRAINT `fk_out_stor_prod` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `fk_out_stor_stor` FOREIGN KEY (`stor_id`) REFERENCES `storage` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `out_stor_order` */
@@ -151,7 +168,12 @@ CREATE TABLE `users` (
   `update_date` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '最后更新时间',
   `is_delete` varchar(4) DEFAULT 'N' COMMENT '是否删除',
   `dep_id` int(11) DEFAULT NULL COMMENT '部门id',
-  PRIMARY KEY (`id`)
+  `org_id` int(11) DEFAULT NULL COMMENT '单位id',
+  PRIMARY KEY (`id`),
+  KEY `fk_user_dep` (`dep_id`),
+  KEY `fk_user_org` (`org_id`),
+  CONSTRAINT `fk_user_dep` FOREIGN KEY (`dep_id`) REFERENCES `department` (`id`),
+  CONSTRAINT `fk_user_org` FOREIGN KEY (`org_id`) REFERENCES `organization` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
