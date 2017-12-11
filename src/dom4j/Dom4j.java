@@ -2,6 +2,7 @@ package dom4j;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import dom4j.pojo.EcgAiEvent;
+import dom4j.pojo.EcgAiEventDetail;
+import dom4j.pojo.EcgAiRunInfo;
 
 public class Dom4j {
 
@@ -21,79 +24,119 @@ public class Dom4j {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SAXReader reader = new SAXReader();
-		try {
-			Document document = reader.read(new File("src/test/file/0b30f12c2693402d88fec1321a7cd034.xml"));
-			Element bookStore = document.getRootElement();
-			Iterator it = bookStore.elementIterator();
-			while (it.hasNext()) {
-				Element book = (Element) it.next();
-				System.out.println("节点的名字是：" + book.getName());
-				if (book.getName().equals("heart_beat")) {
-					System.out.println("===========heart_beat=============");
-					List<Attribute> tempAttrs = book.attributes();
-					if (tempAttrs != null && tempAttrs.size() > 0) {
-						for (Attribute attr : tempAttrs) {
-							System.out.println("属性的名字是：" + attr.getName() + "属性的值是：" + attr.getValue());
-						}
-					} else {
-						System.out.println("没有属性！！");
-					}
-				} else {
-					Iterator it1 = book.elementIterator();
-					EcgAiEvent eae = new EcgAiEvent();
-					eae.setEventLevel(Integer.parseInt(book.getName().substring(book.getName().length() - 1)));
-					System.out.println(eae.getEventLevel());
-					while (it1.hasNext()) {
-						Element book1 = (Element) it1.next();
-						System.out.println("节点的名字是：" + book1.getName());
-						List<Attribute> tempAttrs1 = book1.attributes();
-						if (tempAttrs1 != null && tempAttrs1.size() > 0) {
-							for (Attribute attr1 : tempAttrs1) {
-								if (attr1.getName().equals("info")) {
-									System.out.println(attr1.getValue());
-									String[] temp = attr1.getValue().split(",");
+		Dom4j temp = new Dom4j();
+		temp.testDom4j("D:\\我的测试文件\\2017-12-08-xml\\7d30db066d20828bc5d21122437628ea.xml");
 
-									eae.setEventCode(temp[0]);
-									eae.setEventName(temp[1]);
-									eae.setStartPos(Integer.parseInt(temp[2]));
-									eae.setEndPos(Integer.parseInt(temp[3]));
-									eae.setAvgRate(Integer.parseInt(temp[4]));
-									eae.setMaxRate(Integer.parseInt(temp[5]));
-									eae.setMinRate(Integer.parseInt(temp[6]));
-									eae.setCount(Integer.parseInt(temp[7]));
-									eae.setMaxLenTime(Float.parseFloat(temp[8]));
-									System.out.print(eae.getEventCode());
-									System.out.print(",");
-									System.out.print(eae.getEventName());
-									System.out.print(",");
-									System.out.print(eae.getStartPos());
-									System.out.print(",");
-									System.out.print(eae.getEndPos());
-									System.out.print(",");
-									System.out.print(eae.getAvgRate());
-									System.out.print(",");
-									System.out.print(eae.getMaxRate());
-									System.out.print(",");
-									System.out.print(eae.getMinRate());
-									System.out.print(",");
-									System.out.print(eae.getCount());
-									System.out.print(",");
-									System.out.print(eae.getMaxLenTime());
-									System.out.print("\n");
+	}
 
-								}
-							}
-						} else {
-							System.out.println("没有属性！！");
-						}
-					}
+	public void testDom4j(String param_url) {
+		long begin_time = System.currentTimeMillis();
+		System.out.println("===========方法开始时间=============" + begin_time);
+		File tempFile = new File(param_url);
+		if (!tempFile.exists()) {
+			System.out.println("===========文件不存在=============");
+			return;
+		} else {
+			SAXReader reader = new SAXReader();
+			try {
+				Document document = reader.read(tempFile);
+				Element elementStore = document.getRootElement();
+				Iterator it = elementStore.elementIterator();
+				List<Attribute> tempAttrsroot = elementStore.attributes();
+				System.out.println(
+						elementStore.attribute("avg_hr").getName() + "-----" + elementStore.attribute("avg_hr").getValue());
+				EcgAiRunInfo eari = new EcgAiRunInfo();
 
+				if (tempAttrsroot != null && tempAttrsroot.size() > 0) {
+					eari.setId(111);
+					eari.setService_code("待添加serviceCode");
+					eari.setBusiness_account("待添加business_account");
+					eari.setThread_group("待添加thread_group");
+					eari.setThread_idx(2222);
+					eari.setResult_code(3333);
+					eari.setStart_time(new Date());// 待添加
+					eari.setEnd_time(new Date());// 待添加
+					eari.setExc_long(10000);
+					eari.setAvg_hr(Integer.parseInt(elementStore.attribute("avg_hr").getValue()));
+					eari.setMax_hr(Integer.parseInt(elementStore.attribute("max_hr").getValue()));
+					eari.setMin_hr(Integer.parseInt(elementStore.attribute("min_hr").getValue()));
+					eari.setValid_time(Integer.parseInt(elementStore.attribute("valid_time").getValue()));
+					eari.setHeart_beat_count(Integer.parseInt(elementStore.attribute("heart_beat_count").getValue()));
 				}
+				while (it.hasNext()) {
+					Element element = (Element) it.next();
+					System.out.println("节点的名字是11：" + element.getName());
+					String tempstr = element.getName();
+					if (tempstr.equals("warning_class0")) {
+						if (element.elements().size() > 0) {
+							eari.setAlert_level_0_cnt(element.elements().size());
+							this.getNodeList(element);
+						} else {
+							eari.setAlert_level_0_cnt(0);
+						}
+
+					} else if (tempstr.equals("warning_class1")) {
+						if (element.elements().size() > 0) {
+							eari.setAlert_level_1_cnt(element.elements().size());
+							this.getNodeList(element);
+						} else {
+							eari.setAlert_level_0_cnt(0);
+						}
+					} else if (tempstr.equals("warning_class2")) {
+						if (element.elements().size() > 0) {
+							eari.setAlert_level_2_cnt(element.elements().size());
+							this.getNodeList(element);
+						} else {
+							eari.setAlert_level_0_cnt(0);
+						}
+					}
+				}
+				System.out.println(eari.getAlert_level_0_cnt() + "++++++++++");
+				System.out.println(eari.getAlert_level_1_cnt() + "++++++++++");
+				System.out.println(eari.getAlert_level_2_cnt() + "++++++++++");
+				long end_time = System.currentTimeMillis();
+				System.out.println("===========方法结束时间=============" + end_time);
+				System.out.println("===========方法耗时=============" + (end_time - begin_time));
+			} catch (Exception e) {
+				System.out.println("===========DocumentException=============");
+				e.printStackTrace();
 			}
-		} catch (DocumentException e) {
-			e.printStackTrace();
 		}
 	}
 
+	public void getNodeList(Element param_element) {
+		EcgAiEvent eae = new EcgAiEvent();
+		Iterator it1 = param_element.elementIterator();
+		while (it1.hasNext()) {
+			Element element1 = (Element) it1.next();
+			System.out.println("节点的名字是：" + element1.getName());
+			List<Attribute> tempAttrs11 = element1.attributes();
+			if (tempAttrs11 != null && tempAttrs11.size() > 0) {
+				eae.setAlert_level(1);// 事件列表id
+				eae.setRun_id(123);// 事件调用id
+				eae.setAlert_event_code(Integer.parseInt(element1.attribute("event_code").getValue()));
+				eae.setMax_hr(Integer.parseInt(element1.attribute("event_max_hr").getValue()));
+				eae.setMin_hr(Integer.parseInt(element1.attribute("event_min_hr").getValue()));
+				eae.setEvent_max_len(Float.parseFloat(element1.attribute("max_len_time").getValue()));
+				System.out.println("======2222=======" + eae.getEvent_max_len());
+				Iterator it11 = element1.elementIterator();
+				while (it11.hasNext()) {
+					EcgAiEventDetail eaed = new EcgAiEventDetail();
+					Element element11 = (Element) it11.next();
+					List<Attribute> tempAttrs111 = element11.attributes();
+					if (tempAttrs111 != null && tempAttrs111.size() > 0) {
+						Attribute temp = tempAttrs111.get(0);
+						eaed.setId(111);// 事件id
+						eaed.setEvent_id(12);// 事件列表id
+						eaed.setStart_pos(Integer.parseInt(temp.getValue().split(",")[0]));
+						eaed.setEnd_pos(Integer.parseInt(temp.getValue().split(",")[1]));
+						eaed.setEvent_len(Integer.parseInt(temp.getValue().split(",")[2]));
+						System.out.println(eaed.getId() + "==" + eaed.getEvent_id() + "==" + eaed.getStart_pos() + "=="
+								+ eaed.getEnd_pos() + "==" + eaed.getEvent_len());
+					}
+				}
+			}
+		}
+
+	}
 }
