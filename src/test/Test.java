@@ -3,22 +3,54 @@ package test;
 import java.io.File;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 public class Test {
-//d581fe22d0df89149c411489ba78fd1f
-//d581fe22d0df89149c411489ba78fd1f
+	// d581fe22d0df89149c411489ba78fd1f
+	// d581fe22d0df89149c411489ba78fd1f
+	static Logger logger = LogManager.getLogger(Test.class.getName());
+
 	public static void main(String[] args) throws Exception {
-//		testSystem();
-//		SystemPropertytest();
-//		filetest();
-//		System.out.println(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile());
-//		System.out.println(MD5.getFileMD5String(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
-//		System.out.println(MD5.getFileMD5StringMemory(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
-		//System.out.println(MD5.getMD5String(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
-		String a="12222234_123";
-		System.out.println(a.substring(a.lastIndexOf("_")+1) );
-		String filePath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println(filePath);
+		// testSystem();
+		// SystemPropertytest();
+		// filetest();
+		// System.out.println(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile());
+		// System.out.println(MD5.getFileMD5String(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
+		// System.out.println(MD5.getFileMD5StringMemory(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
+		// System.out.println(MD5.getMD5String(findFile("D:\\zip\\8d0d001dbfe69994478a0925a6ce0f06_2015100511981\\","rt.dat").getAbsoluteFile()));
+		// String a="12222234_123";
+		// System.out.println(a.substring(a.lastIndexOf("_")+1) );
+		// String filePath =
+		// Thread.currentThread().getContextClassLoader().getResource("").getPath();
+		 System.out.println(123);
+		MyApplication myApplication = new MyApplication();
+		logger.trace("123");
+		logger.info("Hello, World!");
+		//myApplication.doIt();
+		hello();
+		logger.error("Hello, World!");
+		logger.trace("exit");  
+
 	}
+	public static boolean hello(){  
+		        logger.trace("entry");  //等同于logger.entry();但此方法在新版本好像已经废弃  
+		          
+		        logger.error("Did it again!");  
+		          
+		        logger.info("这是info级信息");  
+		 
+		        logger.debug("这是debug级信息");  
+		         
+		        logger.warn("这是warn级信息");  
+		          
+		        logger.fatal("严重错误");  
+		          
+		        logger.trace("exit");  
+		          
+		        return false;  
+		    }  
 
 	public static void testSystem() {
 		Date datetemp = new Date(System.currentTimeMillis() - (1000 * 60 * 60));
@@ -27,19 +59,22 @@ public class Test {
 		System.out.println(System.getProperty("user.dir"));
 		System.out.println(System.currentTimeMillis() / 1000 / 60 / 60 / 24);
 	}
+
 	public static void filetest() {
 		File f = new File("");
 		System.out.println("filetest()" + File.separator);
 	}
-	public static File findFile(String directory,String fileName) {
-		File file = new File ( directory ) ;
-		if ( file.isDirectory()  ) {
-			for( File f:file.listFiles()){
-				File result =  findFile(f.getAbsolutePath(), fileName);
-				if ( result != null ) return result ;
+
+	public static File findFile(String directory, String fileName) {
+		File file = new File(directory);
+		if (file.isDirectory()) {
+			for (File f : file.listFiles()) {
+				File result = findFile(f.getAbsolutePath(), fileName);
+				if (result != null)
+					return result;
 			}
 		} else {
-			if ( file.getName().toUpperCase().indexOf(fileName.toUpperCase()) >= 0 ) {
+			if (file.getName().toUpperCase().indexOf(fileName.toUpperCase()) >= 0) {
 				return file;
 			}
 		}

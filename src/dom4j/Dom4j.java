@@ -15,17 +15,20 @@ import org.dom4j.io.SAXReader;
 import dom4j.pojo.EcgAiEvent;
 import dom4j.pojo.EcgAiEventDetail;
 import dom4j.pojo.EcgAiRunInfo;
+import log.LogManager;
 
 public class Dom4j {
 
 	private static ArrayList<Book> bookList = new ArrayList<Book>();
-
+	static LogManager log = new LogManager("dom4j_ai_analysis", "dom4j_ai_analysis");
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		Dom4j temp = new Dom4j();
+		log.info("13245");
 		temp.testDom4j("D:\\我的测试文件\\2017-12-08-xml\\7d30db066d20828bc5d21122437628ea.xml");
+		log.info("132451234567898765432");
 
 	}
 
