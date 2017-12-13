@@ -23,11 +23,11 @@ public class Test {
 		// System.out.println(a.substring(a.lastIndexOf("_")+1) );
 		// String filePath =
 		// Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		System.out.println(123);
+//		System.out.println(123);
 		MyApplication myApplication = new MyApplication();
 		logger.trace("123");
 		logger.info("Hello, World!");
-		// myApplication.doIt();
+		myApplication.doIt();
 		hello();
 		logger.error("Hello, World!");
 		logger.trace("exit");
