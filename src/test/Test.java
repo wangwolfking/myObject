@@ -6,7 +6,6 @@ import java.util.Date;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class Test {
 	// d581fe22d0df89149c411489ba78fd1f
 	// d581fe22d0df89149c411489ba78fd1f
@@ -24,33 +23,27 @@ public class Test {
 		// System.out.println(a.substring(a.lastIndexOf("_")+1) );
 		// String filePath =
 		// Thread.currentThread().getContextClassLoader().getResource("").getPath();
-		 System.out.println(123);
+		System.out.println(123);
 		MyApplication myApplication = new MyApplication();
 		logger.trace("123");
 		logger.info("Hello, World!");
-		//myApplication.doIt();
+		// myApplication.doIt();
 		hello();
 		logger.error("Hello, World!");
-		logger.trace("exit");  
+		logger.trace("exit");
 
 	}
-	public static boolean hello(){  
-		        logger.trace("entry");  //等同于logger.entry();但此方法在新版本好像已经废弃  
-		          
-		        logger.error("Did it again!");  
-		          
-		        logger.info("这是info级信息");  
-		 
-		        logger.debug("这是debug级信息");  
-		         
-		        logger.warn("这是warn级信息");  
-		          
-		        logger.fatal("严重错误");  
-		          
-		        logger.trace("exit");  
-		          
-		        return false;  
-		    }  
+
+	public static boolean hello() {
+		logger.trace("entry"); // 等同于logger.entry();但此方法在新版本好像已经废弃
+		logger.error("Did it again!");
+		logger.info("这是info级信息");
+		logger.debug("这是debug级信息");
+		logger.warn("这是warn级信息");
+		logger.fatal("严重错误");
+		logger.trace("exit");
+		return false;
+	}
 
 	public static void testSystem() {
 		Date datetemp = new Date(System.currentTimeMillis() - (1000 * 60 * 60));
