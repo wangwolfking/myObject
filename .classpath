@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_11"/>
-	<classpathentry kind="lib" path="lib/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/jedis-2.9.0.jar" sourcepath="D:/Program Files/apache-maven/apache-maven-3.2.5-bin/repository/redis/clients/jedis/2.9.0/jedis-2.9.0-sources.jar"/>
 	<classpathentry kind="lib" path="lib/rt.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-api-2.10.0.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="lib/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

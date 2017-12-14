@@ -61,5 +61,6 @@ public class RedisTest {
 		System.out.println("redis 存储的字符串为: " + jedis.get("runoobkey"));
 
 	}
-
+	
+	
 }

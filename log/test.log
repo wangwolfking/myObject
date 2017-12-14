@@ -1,0 +1,14 @@
+11:17:40.355 TRACE test.Test 28 main - 123
+11:17:40.360 INFO  test.Test 29 main - Hello, World!
+11:17:40.361 TRACE test.MyApplication 10 doIt - MyApplication.doIt begin
+11:17:40.361 ERROR test.MyApplication 11 doIt - Did it again!
+11:17:40.362 TRACE test.MyApplication 12 doIt - MyApplication.doIt end
+11:17:40.363 TRACE test.Test 38 hello - entry
+11:17:40.363 ERROR test.Test 39 hello - Did it again!
+11:17:40.364 INFO  test.Test 40 hello - 这是info级信息
+11:17:40.364 DEBUG test.Test 41 hello - 这是debug级信息
+11:17:40.365 WARN  test.Test 42 hello - 这是warn级信息
+11:17:40.366 FATAL test.Test 43 hello - 严重错误
+11:17:40.366 TRACE test.Test 44 hello - exit
+11:17:40.367 ERROR test.Test 32 main - Hello, World!
+11:17:40.367 TRACE test.Test 33 main - exit
