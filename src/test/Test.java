@@ -1,7 +1,16 @@
 package test;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.Enumeration;
+
+import javax.swing.filechooser.FileSystemView;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +32,7 @@ public class Test {
 		// System.out.println(a.substring(a.lastIndexOf("_")+1) );
 		// String filePath =
 		// Thread.currentThread().getContextClassLoader().getResource("").getPath();
-//		System.out.println(123);
+		// System.out.println(123);
 		MyApplication myApplication = new MyApplication();
 		logger.trace("123");
 		logger.info("Hello, World!");
@@ -96,6 +105,110 @@ public class Test {
 		System.out.println("file_separator:" + System.getProperty("file.separator"));
 		System.out.println("path_separator:" + System.getProperty("path.separator"));
 		System.out.println("line_separator:" + System.getProperty("line.separator"));
+	}
+
+	public void test1() {
+		// File[] roots = File.listRoots();
+		// for (int i = 0; i < roots.length; i++) {
+		//
+		// System.out.println(roots[i]);
+		// }
+		FileSystemView sys = FileSystemView.getFileSystemView();
+		File[] list = File.listRoots();
+		try {
+			System.out.println(java.net.InetAddress.getLocalHost().toString());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		for (File diskPartition : list) {
+			double totalCapacity = diskPartition.getTotalSpace();
+			double freePartitionSpace = diskPartition.getFreeSpace();
+			System.out.println("------------" + diskPartition.getAbsoluteFile() + "---------------");
+			System.out.println("总大小 : " + totalCapacity / (1024 * 1024 * 1024) + " GB");
+			System.out.println("剩余: " + freePartitionSpace / (1024 * 1024 * 1024) + " GB");
+			System.out.println("磁盘类型: " + sys.getSystemTypeDescription(diskPartition));
+		}
+	}
+
+	public String test2() {
+		String strIp = "";
+		try {
+			Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+			InetAddress ip = null;
+			while (allNetInterfaces.hasMoreElements()) {
+				NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
+				// System.out.println(netInterface.getName());
+				Enumeration addresses = netInterface.getInetAddresses();
+				while (addresses.hasMoreElements()) {
+					ip = (InetAddress) addresses.nextElement();
+					if (ip != null && ip instanceof Inet4Address) {
+						if (!ip.getHostAddress().equals("127.0.0.1")) {
+							System.out.println("本机的IP = " + ip.getHostAddress());
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return strIp;
+	}
+
+	public static String getMAC(String ipAddress) {
+		String address = "ERROR";
+		// if(ipAddress.equalsIgnoreCase("localhost")||ipAddress.equalsIgnoreCase("127.0.0.1")){
+		// return address ;
+		// }
+		String os = System.getProperty("os.name");
+		if (os != null && os.startsWith("Windows")) {
+			try {
+				String command = "cmd.exe /c nbtstat -a " + ipAddress;
+				Process p = Runtime.getRuntime().exec(command);
+				BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String line;
+				while ((line = br.readLine()) != null) {
+					if (line.indexOf("MAC") > 0) {
+						int index = line.indexOf("=");
+						index += 2;
+						address = line.substring(index);
+						break;
+					}
+				}
+				br.close();
+				return address.trim();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return address;
+	}
+
+	public static String getMACAddress() {
+		System.out.println(123);
+		String address = "";
+		String os = System.getProperty("os.name");
+		if (os != null && os.startsWith("Windows")) {
+			try {
+				String command = "cmd.exe /c ipconfig /all";
+				Process p = Runtime.getRuntime().exec(command);
+				BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String line;
+				while ((line = br.readLine()) != null) {
+					System.out.println(line);// 此处使用打印出来是乱码应该是中文的关系。
+					if (line.indexOf("Physical Address") > 0) {
+						int index = line.indexOf(":");
+						index += 2;
+						address = line.substring(index);
+						System.out.println(address);
+						break;
+					}
+				}
+				br.close();
+				return address.trim();
+			} catch (Exception e) {
+			}
+		}
+		return address;
 	}
 
 }
