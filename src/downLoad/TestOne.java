@@ -6,8 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class TestOne {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import test.Test;
+
+public class TestOne {
+	static Logger logger = LogManager.getLogger(TestOne.class.getName());
 	public static void main(String[] args) {
 		// 源文件与目标文件
 		File sourceFile = new File("D:/测试的文件/test/1", "test.txt");
@@ -23,8 +28,12 @@ public class TestOne {
 			fos = new FileOutputStream(targetFile);
 			// 数据读写
 			while (fis.read(buf) != -1) {
+				logger.trace("333");
+				logger.info("jishihao");
+				logger.error("Hello, World!");
 				System.out.println("write data...");
 				fos.write(buf);
+				logger.trace("exit");
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("指定文件不存在");
