@@ -34,3 +34,53 @@
 2017-12-13 at 11:17:40 CST TRACE test.Test 44 hello - exit
 2017-12-13 at 11:17:40 CST ERROR test.Test 32 main - Hello, World!
 2017-12-13 at 11:17:40 CST TRACE test.Test 33 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:26 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:26 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:27 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:27 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 31 main - 333
+2018-01-04 at 17:24:27 CST INFO  downLoad.TestOne 32 main - jishihao
+2018-01-04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018-01-04 at 17:24:27 CST TRACE downLoad.TestOne 36 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit
+2018-01-04 at 17:25:42 CST TRACE downLoad.TestOne 33 main - exit

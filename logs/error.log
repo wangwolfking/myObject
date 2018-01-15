@@ -8,3 +8,13 @@
 2017.12.13 at 11:17:40 CST ERROR test.Test 39 hello - Did it again!
 2017.12.13 at 11:17:40 CST FATAL test.Test 43 hello - 严重错误
 2017.12.13 at 11:17:40 CST ERROR test.Test 32 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:26 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
+2018.01.04 at 17:24:27 CST ERROR downLoad.TestOne 33 main - Hello, World!
