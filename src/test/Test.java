@@ -61,7 +61,7 @@ public class Test {
 	    	System.out.println(li.getDriver()+"=="+li.getName()+"=="+li.getFree()+"=="+li.getTotal());
 		}
 	    
-	    
+	    System.out.println(tttTest.getSysPorStr());
 
 	}
 
@@ -87,5 +87,31 @@ public class Test {
 		System.out.println(tempMap.get("123"));
 		return spmList;
 		
+	}
+	public String getSysPorStr() {
+		String str="";		
+		StringBuffer strbf = new StringBuffer();
+		FileSystemView sys = FileSystemView.getFileSystemView();
+		File[] list = File.listRoots();
+		try {
+			str = java.net.InetAddress.getLocalHost().toString();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		strbf.append(str);
+		strbf.append("@");
+		for (File diskPartition : list) {
+			if (sys.getSystemTypeDescription(diskPartition).equals("本地磁盘")) {
+				double totalCapacitybyte = diskPartition.getTotalSpace();
+				double freePartitionSpacebyte = diskPartition.getFreeSpace();
+				long totalCapacity = Math.round(totalCapacitybyte / (1024 * 1024 * 1024));
+				long freePartitionSpace = Math.round(freePartitionSpacebyte / (1024 * 1024 * 1024));
+				String temp=diskPartition.getAbsolutePath();
+				strbf.append(temp.substring(0,1)+ "-" + totalCapacity  + "-"
+						+ freePartitionSpace);
+				strbf.append(";");
+			}
+		}
+		return strbf.toString().substring(0,strbf.toString().length()-1);
 	}
 }
