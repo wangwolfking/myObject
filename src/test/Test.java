@@ -6,7 +6,10 @@ import java.io.InputStreamReader;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
@@ -48,6 +51,10 @@ public class Test {
 //		logger.trace("exit");
 		String t1="YYYYYYYYY";
 	    String t="yocalywzg-PC/192.168.10.252@C-195-128;D-736-559";
+	    t = URLEncoder.encode(t,"utf-8") ;
+	    System.out.println(t);
+	    t=URLDecoder.decode(t,"utf-8");
+	    System.out.println(t);
 	    Test tttTest=new Test();
 	    List<SysProModel> list=tttTest.getSysProModel(t1,t);
 	    java.util.Map<String,List<SysProModel>> tempMap=new HashMap<String, List<SysProModel>>();
@@ -62,6 +69,10 @@ public class Test {
 		}
 	    
 	    System.out.println(tttTest.getSysPorStr());
+	    String time_format = "yyyy-MM-dd HH:mm:ss";
+	    String str4="2018-01-30 16:48:34";
+		Date createTimes = new SimpleDateFormat(time_format).parse(str4);
+		Long long1=System.currentTimeMillis() - createTimes.getTime();
 
 	}
 
