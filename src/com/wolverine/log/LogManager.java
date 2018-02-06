@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 
+import com.wolverine.util.StringUtils;
+
 /**
  * @see 数据系统日志管理�
  * @version 1.0 
