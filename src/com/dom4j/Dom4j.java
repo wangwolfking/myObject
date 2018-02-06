@@ -1,4 +1,4 @@
-package dom4j;
+package com.dom4j;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -12,9 +12,10 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import dom4j.pojo.EcgAiEvent;
-import dom4j.pojo.EcgAiEventDetail;
-import dom4j.pojo.EcgAiRunInfo;
+import com.dom4j.pojo.EcgAiEvent;
+import com.dom4j.pojo.EcgAiEventDetail;
+import com.dom4j.pojo.EcgAiRunInfo;
+
 import log.LogManager;
 
 public class Dom4j {

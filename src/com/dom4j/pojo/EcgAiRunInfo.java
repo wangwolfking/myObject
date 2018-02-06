@@ -1,4 +1,4 @@
-package dom4j.pojo;
+package com.dom4j.pojo;
 
 import java.util.Date;
 
