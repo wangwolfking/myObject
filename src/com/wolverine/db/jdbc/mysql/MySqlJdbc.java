@@ -1,4 +1,4 @@
-package com.wolverine.db.jdbc;
+package com.wolverine.db.jdbc.mysql;
 
 import java.io.FileInputStream;
 import java.sql.Connection;

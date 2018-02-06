@@ -1,4 +1,4 @@
-package com.wolverine.jdbc.Oracle;
+package com.wolverine.db.jdbc.Oracle;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
